@@ -45,8 +45,8 @@ DEFAULT_TTS_MODEL = "F5-TTS"
 tts_model_choice = DEFAULT_TTS_MODEL
 
 DEFAULT_TTS_MODEL_CFG = [
-    "hf://SWivid/F5-TTS/F5TTS_Base/model_1200000.safetensors",
-    "hf://SWivid/F5-TTS/F5TTS_Base/vocab.txt",
+    "https://huggingface.co/SPRINGLab/F5-Hindi-24KHz/resolve/main/model_2500000.safetensors",
+    "https://huggingface.co/SPRINGLab/F5-Hindi-24KHz/resolve/main/vocab.txt",
     json.dumps(dict(dim=1024, depth=22, heads=16, ff_mult=2, text_dim=512, conv_layers=4)),
 ]
 
@@ -56,7 +56,7 @@ DEFAULT_TTS_MODEL_CFG = [
 vocoder = load_vocoder()
 
 
-def load_f5tts(ckpt_path=str(cached_path("hf://SWivid/F5-TTS/F5TTS_Base/model_1200000.safetensors"))):
+def load_f5tts(ckpt_path=str(cached_path("https://huggingface.co/SPRINGLab/F5-Hindi-24KHz/resolve/main/model_2500000.safetensors"))):
     F5TTS_model_cfg = dict(dim=1024, depth=22, heads=16, ff_mult=2, text_dim=512, conv_layers=4)
     return load_model(DiT, F5TTS_model_cfg, ckpt_path)
 
@@ -885,4 +885,4 @@ if __name__ == "__main__":
     if not USING_SPACES:
         main()
     else:
-        app.queue().launch()
+        app.queue().launch(share=True)
